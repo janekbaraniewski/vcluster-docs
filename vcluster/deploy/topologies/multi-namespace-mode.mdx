@@ -114,7 +114,13 @@ timeout=60; end_time=$(( $(date +%s) + timeout )); while [ $(date +%s) -lt $end_
 </HiddenCodeBlock>
 
 ```bash
-kubectl wait --for=condition=available --timeout=60s secret/test-cert-tls
+timeout=60; end_time=$(( $(date +%s) + timeout )); while [ $(date +%s) -lt $end_time ]; do kubectl get secret test-cert-tls -n default > /dev/null 2>&1 && echo "Secret 'test-cert-tls' is created." && exit 0; sleep 2; done; echo "Timeout of $timeout seconds reached. Secret 'test-cert-tls' was not created." && exit 1
+```
+
+</HiddenCodeBlock>
+
+```bash
+kubectl get secret test-cert-tls
 ```
 
 And you should see
