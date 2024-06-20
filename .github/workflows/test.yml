@@ -51,8 +51,8 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const owner = 'owner-name'; // replace with the owner of the repository
-            const repo = 'repository-name'; // replace with the repository name
+            const owner = 'loft-sh'; // replace with the owner of the repository
+            const repo = 'vcluster'; // replace with the repository name
 
             // Fetch all releases including pre-releases
             const releases = await github.repos.listReleases({
