@@ -114,7 +114,7 @@ timeout=60; end_time=$(( $(date +%s) + timeout )); while [ $(date +%s) -lt $end_
 </HiddenCodeBlock>
 
 ```bash
-kubectl get secret test-cert-tls
+kubectl wait --for=condition=available --timeout=60s secret/test-cert-tls
 ```
 
 And you should see
