@@ -93,7 +93,7 @@ jobs:
       - name: Install vcluster CLI
         run: |
           version=${{ github.event.inputs.version || steps.list-releases.outputs.latest-release }}
-          curl -LO "https://github.com/loft-sh/vcluster/releases/download/v${version}/vcluster-linux-amd64"
+          curl -LO "https://github.com/loft-sh/vcluster/releases/download/${version}/vcluster-linux-amd64"
           chmod +x ./vcluster-linux-amd64
           sudo mv ./vcluster-linux-amd64 /usr/local/bin/vcluster
 
