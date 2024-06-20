@@ -88,16 +88,11 @@ jobs:
       - name: Display latest release
         if: env.run-list-releases == 'true'
         run: |
-          echo "Latest release: ${{ steps.list-releases.outputs.latest-release }}"
-
-      - name: Use provided version
-        if: env.run-list-releases == 'false'
-        run: |
-          echo "Using provided version: ${{ github.event.inputs.version }}"
+          echo "Latest vcluster release: ${{ steps.list-releases.outputs.latest-release }}"
 
       - name: Install vcluster CLI
         run: |
-          version=${{ github.event.inputs.version || '0.20.0-beta.9' }}
+          version=${{ github.event.inputs.version || steps.list-releases.outputs.latest-release }}
           curl -LO "https://github.com/loft-sh/vcluster/releases/download/v${version}/vcluster-linux-amd64"
           chmod +x ./vcluster-linux-amd64
           sudo mv ./vcluster-linux-amd64 /usr/local/bin/vcluster
