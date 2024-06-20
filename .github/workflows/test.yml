@@ -48,14 +48,14 @@ jobs:
       - name: List releases of another repository
         id: list-releases
         if: env.run-list-releases == 'true'
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
-            const owner = 'loft-sh'; // replace with the owner of the repository
-            const repo = 'vcluster'; // replace with the repository name
+            const owner = 'loft-sh';
+            const repo = 'vcluster';
 
             // Fetch all releases including pre-releases
-            const releases = await github.repos.listReleases({
+            const releases = await github.rest.repos.listReleases({
               owner: owner,
               repo: repo
             });
